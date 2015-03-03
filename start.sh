@@ -1,8 +1,8 @@
 #!/bin/bash
 
 PARAM=""
-if [ -n "$SERVER" ]; then
-    PARAM="-server -bootstrap-expect 1";
+if [ -n "$SERVERS" ]; then
+    PARAM="-server -bootstrap-expect $SERVERS";
 fi
 
 consul agent -data-dir /tmp/consul $PARAM

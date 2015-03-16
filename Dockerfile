@@ -4,17 +4,17 @@ MAINTAINER Francois Gaudin <francois@presencelearning.com>
 RUN apt-get update
 
 RUN \
-  apt-get install -y wget unzip
+  apt-get install -y unzip curl
 
 RUN \
-  wget https://dl.bintray.com/mitchellh/consul/0.5.0_linux_amd64.zip -O /tmp/consul.zip && \
+  curl --silent -L -o /tmp/consul.zip https://dl.bintray.com/mitchellh/consul/0.5.0_linux_amd64.zip && \
   unzip /tmp/consul.zip -d /usr/local/bin/ && \
   mkdir -p /opt/consul_ui && \
-  wget https://dl.bintray.com/mitchellh/consul/0.5.0_web_ui.zip -O /tmp/consul_ui.zip && \
+  curl --silent -L -o /tmp/consul_ui.zip https://dl.bintray.com/mitchellh/consul/0.5.0_web_ui.zip && \
   unzip /tmp/consul_ui.zip -d /opt/consul_ui
 
 RUN \
-  apt-get remove -y wget unzip && \
+  apt-get remove -y unzip && \
   apt-get autoremove -y && \
   apt-get clean && rm -rf /var/lib/{apt,dpkg,cache,log,gems}/ && \
   rm -rf /tmp/*
